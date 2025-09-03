@@ -28,6 +28,7 @@ int main()
 
 	while (running)
 	{
+		DWORD start_time = GetTickCount();
 		while (peekmessage(&msg))
 		{
 			mouse.x = msg.x / 200;
@@ -46,6 +47,13 @@ int main()
 		messageBox();
 		FlushBatchDraw();
 		gameCheck();
+
+		DWORD delta_time = start_time - GetTickCount();
+
+		if (delta_time < 1000 / 60)
+		{
+			Sleep(1000 / 60 - delta_time);
+		}
 	}
 
 	EndBatchDraw();
