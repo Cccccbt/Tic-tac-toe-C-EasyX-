@@ -12,6 +12,7 @@ void drawBoard();
 void drawPiece();
 void setPiece(Mouse);
 void gameCheck();
+void messageBox();
 
 bool running = true;
 char player = 'o';
@@ -42,6 +43,7 @@ int main()
 		cleardevice();
 		drawBoard();
 		drawPiece();
+		messageBox();
 		FlushBatchDraw();
 		gameCheck();
 	}
@@ -180,6 +182,20 @@ void gameCheck()
 	{
 		MessageBox(GetHWnd(), _T("Draw."), _T("Game Over"), MB_OK);
 		running = false;
+	}
+}
+
+void messageBox()
+{
+	settextcolor(RGB(200, 200, 200));
+	if (player == 'o')
+	{
+		outtextxy(20, 20, _T("Now: O"));
+	}
+
+	else
+	{
+		outtextxy(20, 20, _T("Now: X"));
 	}
 }
 
